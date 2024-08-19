@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
     });
     const getDates = getDatesInRange(startDate, endDate);
     const isUnavailable =
-      allBookedDates && allBookedDates.some((date) => getDates.includes(date));
+      allBookedDates && allBookedDates.some((date:any) => getDates.includes(date));
     if (isUnavailable) {
       return NextResponse.json({
         message: "You are trying to reserve a booked date!",
