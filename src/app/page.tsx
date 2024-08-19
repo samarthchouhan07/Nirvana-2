@@ -3,7 +3,7 @@ import Hero from "@/components/hero/Hero";
 import PopularLocations from "@/components/popular-locations/PopularLocations";
 import sea from "../../public/sea.jpg"
 import hotel_image from "../../public/hr_10.jpg"
-
+export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <>
