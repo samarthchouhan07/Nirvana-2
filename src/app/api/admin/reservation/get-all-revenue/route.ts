@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     const allReservationsPrices = allReservations.map((reservation: any) => {
       return reservation.daysDifference * reservation.listing.pricePerNight;
     });
-    const totalRevenue = allReservationsPrices.reduce((a, b) => a + b);
+    const totalRevenue = allReservationsPrices.reduce((a: any, b: any) => a + b);
     return NextResponse.json(totalRevenue);
   } catch (error: any) {
     console.log(error);
