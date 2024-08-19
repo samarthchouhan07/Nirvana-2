@@ -23,9 +23,15 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export function getSession() {
     return __awaiter(this, void 0, void 0, function* () {
-        const session = yield getServerSession(authOptions);
-        console.log("Session in getSession:", session);
-        return session;
+        try {
+            const session = yield getServerSession(authOptions);
+            console.log("Session in getSession:", session);
+            return session;
+        }
+        catch (error) {
+            console.error("Error fetching session:", error);
+            return null;
+        }
     });
 }
 export function getCurrentUser() {
@@ -33,25 +39,22 @@ export function getCurrentUser() {
         var _a;
         try {
             const session = yield getSession();
-            console.log(session);
             if (!((_a = session === null || session === void 0 ? void 0 : session.user) === null || _a === void 0 ? void 0 : _a.email)) {
                 return null;
             }
             const user = yield db.user.findUnique({
                 where: {
-                    email: session.user.email
-                }
+                    email: session.user.email,
+                },
             });
-            console.log(user);
             if (!user) {
                 return null;
             }
             const { password } = user, currentUser = __rest(user, ["password"]);
-            console.log(currentUser);
             return currentUser;
         }
         catch (error) {
-            console.log(error);
+            console.error("Error fetching current user:", error);
             return null;
         }
     });

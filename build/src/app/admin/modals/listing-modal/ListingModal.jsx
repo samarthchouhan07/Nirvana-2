@@ -48,6 +48,8 @@ const ListingModal = ({ handleHideModal, listingId }) => {
         listing === null || listing === void 0 ? void 0 : listing.hasFreeWifi,
         listing === null || listing === void 0 ? void 0 : listing.location,
         listing === null || listing === void 0 ? void 0 : listing.pricePerNight,
+        listing,
+        reset
     ]);
     const handleImage = (e) => {
         console.log("handleImage got hit");

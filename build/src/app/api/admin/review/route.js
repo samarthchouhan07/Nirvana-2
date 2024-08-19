@@ -18,6 +18,7 @@ export function GET(req) {
             return NextResponse.json(reviews);
         }
         catch (error) {
+            console.error(error);
             return NextResponse.error();
         }
     });

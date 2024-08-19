@@ -18,6 +18,7 @@ export function GET(req) {
             return NextResponse.json(allListings);
         }
         catch (error) {
+            console.error(error);
             return NextResponse.json({
                 error: error
             });

@@ -14,7 +14,7 @@ const nextConfig = {
         }
         return config;
     },
-    reactStrictMode: true, // Optional: Enable React Strict Mode for additional checks
+    reactStrictMode: true,
 }
 
 export default withPlaiceholder(nextConfig);
