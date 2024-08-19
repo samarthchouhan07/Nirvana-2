@@ -6,10 +6,7 @@
     "start": "next start",
     "dev": "next dev",
     "lint": "next lint",
-    "postinstall": "prisma generate",
-    "schema": "src/prisma/schema.prisma",
-      "prisma:generate": "prisma generate --schema src/prisma/schema.prisma",
-  "build": "npm run prisma:generate && next build"
+    "build": "next build"
   },
   "babel": {
     "presets": [
