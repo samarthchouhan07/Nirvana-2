@@ -20,11 +20,14 @@ const UserModal = ({ userId, handleHideModal }: Props) => {
     queryFn: () => getUserById(userId),
     queryKey: ["admin", "users", { userId }],
   });
+  const { register, handleSubmit, reset } = useForm<userModalType>({
+    resolver: zodResolver(schema),
+  });
   useEffect(() => {
     if (user) {
       reset({ username: user.username, email: user.email });
     }
-  }, [user]);
+  }, [user,reset]);
   const querClient = useQueryClient();
   const { mutate: handleUpdateUser, isPending: isPendingMutation } =
     useMutation({
@@ -36,16 +39,14 @@ const UserModal = ({ userId, handleHideModal }: Props) => {
         });
       },
     });
-  const { register, handleSubmit, reset } = useForm<userModalType>({
-    resolver: zodResolver(schema),
-  });
+  
 
   useEffect(() => {
     reset({
       username: user?.username,
       email: user?.email,
     });
-  }, [user?.username, user?.email]);
+  }, [user?.username, user?.email,reset]);
   const onSubmit = (data: any) => {
     handleUpdateUser({ userId, data });
     handleHideModal();

@@ -17,23 +17,23 @@ import { getListingById } from "./service";
 import Reviews from "./Reviews";
 import Loader from "@/ui/Loader";
 register();
-var HotelDetails = function (ctx) {
+const HotelDetails = (ctx) => {
     var _a, _b;
     console.log(ctx);
-    var id = (_a = ctx.params) === null || _a === void 0 ? void 0 : _a.id;
-    var _c = useState(5), selectedStar = _c[0], setSelectedStar = _c[1];
-    var _d = useState(false), showModal = _d[0], setShowModal = _d[1];
-    var swiperElRef = useRef(null);
+    const id = (_a = ctx.params) === null || _a === void 0 ? void 0 : _a.id;
+    const [selectedStar, setSelectedStar] = useState(5);
+    const [showModal, setShowModal] = useState(false);
+    const swiperElRef = useRef(null);
     console.log(id);
-    var _e = useQuery({
-        queryKey: ["listings", { id: id }],
-        queryFn: function () { return getListingById(id); },
-    }), listing = _e.data, isPending = _e.isPending;
+    const { data: listing, isPending } = useQuery({
+        queryKey: ["listings", { id }],
+        queryFn: () => getListingById(id),
+    });
     console.log(listing);
-    var handleShowModal = function () { return setShowModal(true); };
-    var handleHideModal = function () { return setShowModal(false); };
+    const handleShowModal = () => setShowModal(true);
+    const handleHideModal = () => setShowModal(false);
     if (isPending) {
-        var style = {
+        const style = {
             marginTop: "5rem",
             position: "absolute",
             top: "50%",
@@ -45,16 +45,16 @@ var HotelDetails = function (ctx) {
         <Loader />
       </div>);
     }
-    return (<div className={"min-h-screen w-full mt-24 ".concat(showModal && "overflow-hidden")}>
+    return (<div className={`min-h-screen w-full mt-24 ${showModal && "overflow-hidden"}`}>
       {showModal && (<BookModal handleHideModal={handleHideModal} listing={listing}/>)}
       <div className="h-full w-3/4 mx-auto">
         <div>
           <div className="w-full h-[750px] overflow-hidden mx-auto">
             <div className="w-full h-full">
               <Swiper modules={[Navigation]} ref={swiperElRef} slidesPerView={1} navigation>
-                {(_b = listing === null || listing === void 0 ? void 0 : listing.imageUrls) === null || _b === void 0 ? void 0 : _b.map(function (imageUrl) { return (<SwiperSlide key={imageUrl}>
+                {(_b = listing === null || listing === void 0 ? void 0 : listing.imageUrls) === null || _b === void 0 ? void 0 : _b.map((imageUrl) => (<SwiperSlide key={imageUrl}>
                     <Image className="h-[750px] w-full object-cover rounded-lg" height={750} width={750} src={imageUrl} blurDataURL={listing.blurredImage} alt="" placeholder="blur"/>
-                  </SwiperSlide>); })}
+                  </SwiperSlide>))}
               </Swiper>
             </div>
           </div>

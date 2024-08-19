@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-var Card = function (_a) {
-    var place = _a.place;
-    var url = "/catalog?city=".concat(place.value, "&min_price=").concat(50, "&max_price=").concat(999, "&type=").concat("luxury");
+const Card = ({ place }) => {
+    const url = `/catalog?city=${place.value}&min_price=${50}&max_price=${999}&type=${"luxury"}`;
     return (<Link href={url} className="cursor-pointer h-[500px] w-[350px] flex flex-wrap rounded-xl shadow-md">
       <div className="relative h-2/3 w-full ">
         <Image src={place.image} alt="" className="h-full w-full overflow-hidden rounded-tl-xl rounded-tr-xl object-cover"/>

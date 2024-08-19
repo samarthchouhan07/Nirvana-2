@@ -4,9 +4,9 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { AiFillStar, AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import { MdDashboard, MdHotel } from "react-icons/md";
-var Sidebar = function () {
-    var currentPage = usePathname().split("/")[2];
-    var sidebarData = [
+const Sidebar = () => {
+    const currentPage = usePathname().split("/")[2];
+    const sidebarData = [
         {
             text: "Dashboard",
             icon: MdDashboard,
@@ -40,15 +40,15 @@ var Sidebar = function () {
     ];
     return (<div className="w-full flex flex-col justify-between">
       <div className="h-full w-full flex flex-col gap-10 col-span-1">
-        {sidebarData.map(function (data, idx) { return (<Link key={data.text} href={data.href} className={"flex items-center gap-2 p-3 rounded-xl transition-all cursor-pointer ".concat(data.isCurrentpage && "bg-blue-600")}>
+        {sidebarData.map((data, idx) => (<Link key={data.text} href={data.href} className={`flex items-center gap-2 p-3 rounded-xl transition-all cursor-pointer ${data.isCurrentpage && "bg-blue-600"}`}>
             <span>
                 {<data.icon color={data.isCurrentpage ? "#fff" : "#cec7cc"}/>}
             </span>
-            <span className={"".concat(data.isCurrentpage ? "text-white" : "text-[#cec7c7]")}>
+            <span className={`${data.isCurrentpage ? "text-white" : "text-[#cec7c7]"}`}>
                 {data.text}
             </span>
             
-          </Link>); })}
+          </Link>))}
       </div>
     </div>);
 };

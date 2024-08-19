@@ -4,11 +4,11 @@ import Card from "./Card";
 import { useQuery } from "@tanstack/react-query";
 import { getBestHotels } from "./service";
 import Loader from "@/ui/Loader";
-var BestHotels = function () {
-    var _a = useQuery({
+const BestHotels = () => {
+    const { data, isPending } = useQuery({
         queryKey: ["listings"],
         queryFn: getBestHotels
-    }), data = _a.data, isPending = _a.isPending;
+    });
     console.log(data);
     if (isPending) {
         return (<div>
@@ -24,7 +24,7 @@ var BestHotels = function () {
              Best Hotels
         </h2>
         <div className="flex flex-wrap items-center gap-14">
-              {data === null || data === void 0 ? void 0 : data.map(function (place) { return (<Card key={place.id} place={place}/>); })}
+              {data === null || data === void 0 ? void 0 : data.map((place) => (<Card key={place.id} place={place}/>))}
         </div>
       </div>
     </div>);

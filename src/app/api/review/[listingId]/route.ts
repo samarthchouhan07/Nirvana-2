@@ -14,7 +14,7 @@ export async function GET(req:NextRequest,ctx:any){
             }
         })
         console.log(listing)
-        const reviewIds=listing?.reviews.map(({id})=>id)
+        const reviewIds=listing?.reviews.map(({id}:any)=>id)
         console.log(reviewIds)
         const reviews=await db.review.findMany({
             where:{

@@ -3,11 +3,11 @@ import React from "react";
 import Card from "./Card";
 import { useQuery } from "@tanstack/react-query";
 import { getPopularPlaces } from "./service";
-var PopularLocations = function () {
-    var _a = useQuery({
+const PopularLocations = () => {
+    const { data, isLoading } = useQuery({
         queryFn: getPopularPlaces,
         queryKey: ["popular-listings"],
-    }), data = _a.data, isLoading = _a.isLoading;
+    });
     console.log(data);
     return (<div className="h-full w-full my-36">
       <div className="h-full w-5/6 mx-auto flex flex-col justify-start">
@@ -18,7 +18,7 @@ var PopularLocations = function () {
           Popular Locations
         </h2>
         <div className="flex flex-wrap items-center gap-14">
-          {data === null || data === void 0 ? void 0 : data.map(function (place, idx) { return (<Card key={idx} place={place}/>); })}
+          {data === null || data === void 0 ? void 0 : data.map((place, idx) => (<Card key={idx} place={place}/>))}
         </div>
       </div>
     </div>);

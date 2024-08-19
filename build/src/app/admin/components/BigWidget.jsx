@@ -1,9 +1,8 @@
 import Loader from "@/ui/Loader";
 import Image from "next/image";
 import React from "react";
-var BigWidget = function (_a) {
-    var _b;
-    var listing = _a.listing;
+const BigWidget = ({ listing }) => {
+    var _a;
     console.log(listing);
     if (!listing) {
         return <Loader />;
@@ -22,7 +21,7 @@ var BigWidget = function (_a) {
             <span className="flex items-center font-semibold gap-1">
               <h3 className="text-slate-500">Total reservations:</h3>
               <span className="text-slate-500">
-                {(_b = listing === null || listing === void 0 ? void 0 : listing.reservations) === null || _b === void 0 ? void 0 : _b.length} reservations
+                {(_a = listing === null || listing === void 0 ? void 0 : listing.reservations) === null || _a === void 0 ? void 0 : _a.length} reservations
               </span>
             </span>
           </div>

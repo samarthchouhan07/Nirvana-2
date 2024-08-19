@@ -3,10 +3,9 @@ import Link from "next/link";
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { format } from "currency-formatter";
-var Card = function (_a) {
-    var place = _a.place;
+const Card = ({ place }) => {
     console.log(place);
-    return (<Link href={"/details/".concat(place.id)} className="h-[500px] w-[350px] flex flex-wrap rounded-xl cursor-pointer transition-all shadow-md hover:shadow-lg">
+    return (<Link href={`/details/${place.id}`} className="h-[500px] w-[350px] flex flex-wrap rounded-xl cursor-pointer transition-all shadow-md hover:shadow-lg">
       <div className="relative h-2/3 w-full">
         <Image width={250} height={250} src={place.imageUrls[0]} alt="Location image" className="h-full w-full overflow-hidden rounded-tl-xl rounded-tr-xl object-cover "/>
         <div className="absolute right-0 bottom-0 p-4 bg-blue-700 text-white rounded-tl-xl font-semibold">

@@ -3,12 +3,12 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-var Chart = function () {
-    var _a = useState({
+const Chart = () => {
+    const [chartData, setChartData] = useState({
         datasets: []
-    }), chartData = _a[0], setChartData = _a[1];
-    var _b = useState({}), chartOptions = _b[0], setChartOptions = _b[1];
-    useEffect(function () {
+    });
+    const [chartOptions, setChartOptions] = useState({});
+    useEffect(() => {
         setChartData({
             labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
             datasets: [

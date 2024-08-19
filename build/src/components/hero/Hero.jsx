@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
-var Hero = function (_a) {
-    var image = _a.image, mainHeader = _a.mainHeader, secondaryHeader = _a.secondaryHeader;
+const Hero = ({ image, mainHeader, secondaryHeader }) => {
     return (<div>
       <div className="relative h-screen w-full ">
         <Image src={image} alt="" className="brightness-50 h-full w-full object-cover"/>

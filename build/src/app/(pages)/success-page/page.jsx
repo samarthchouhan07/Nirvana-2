@@ -1,5 +1,5 @@
 import React from 'react';
-var Page = function (props) {
+const Page = (props) => {
     return (<div className="h-screen w-full flex justify-center items-center bg-slate-100">
       <div className="max-w-md p-12 bg-white rounded-lg shadow-lg">
         <svg className="mx-auto mb-4 w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

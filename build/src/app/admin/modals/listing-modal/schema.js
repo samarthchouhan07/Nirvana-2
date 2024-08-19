@@ -1,14 +1,8 @@
 import { z } from "zod";
 import { optionLocations, optionTypes } from "@/data/data";
-var locationValues = optionLocations.map(function (_a) {
-    var value = _a.value;
-    return value;
-});
-var typeValues = optionTypes.map(function (_a) {
-    var value = _a.value;
-    return value;
-});
-var schema = z.object({
+const locationValues = optionLocations.map(({ value }) => value);
+const typeValues = optionTypes.map(({ value }) => value);
+const schema = z.object({
     name: z.string().min(1, { message: "Name is required" }),
     desc: z.string().min(1, { message: "Description is required!" }),
     beds: z.number().min(1, { message: "Beds are required" }),

@@ -2,10 +2,9 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-var Card = function (_a) {
-    var reservation = _a.reservation, mutate = _a.mutate;
+const Card = ({ reservation, mutate }) => {
     return (<div className="flex flex-col w-[300px] min-h-full">
-      <Link href={"/details/".concat(reservation.listingId)}>
+      <Link href={`/details/${reservation.listingId}`}>
         <Image src={reservation.listing.imageUrls[0]} alt={reservation.listing.name} className="rounded-xl shadow-xl" height={200} width={300}/>
       </Link>
       <div className="p-2 mt-2 flex flex-col gap-4">
@@ -21,7 +20,7 @@ var Card = function (_a) {
           </span>
         </div>
         <div>Total Price: ${reservation.daysDifference * reservation.listing.pricePerNight}</div>
-        <button onClick={function () { return mutate({ chargeId: reservation.chargeId, reservationId: reservation.id }); }} className="w-full py-2 bg-red-500 text-white rounded-xl transition-all hover:bg-red-400">
+        <button onClick={() => mutate({ chargeId: reservation.chargeId, reservationId: reservation.id })} className="w-full py-2 bg-red-500 text-white rounded-xl transition-all hover:bg-red-400">
           Cancel
         </button>
       </div>

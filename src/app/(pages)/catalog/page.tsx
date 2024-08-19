@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 import image from "../../../../public/hr_1.jpg";
 import Select from "@/ui/Select";
 import { optionLocations, optionTypes } from "@/data/data";
@@ -14,6 +14,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getFilteredListings } from "./service";
 import Card from "@/components/best-hotels/Card";
 import { z } from "zod";
+import Loader from "@/ui/Loader";
 
 type FormData = z.infer<typeof schema>;
 
@@ -63,6 +64,7 @@ const Catalog: React.FC = () => {
   const displayImage = locationImage || image;
   
   return (
+    <Suspense fallback={<div><Loader/></div>}>
     <div className="min-h-screen w-full">
       <div className="relative h-3/5 w-full">
         <Image
@@ -131,6 +133,7 @@ const Catalog: React.FC = () => {
         </div>
       </div>
     </div>
+    </Suspense>
   );
 };
 

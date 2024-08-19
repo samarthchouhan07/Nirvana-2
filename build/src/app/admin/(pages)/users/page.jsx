@@ -6,11 +6,11 @@ import { columns } from './table/Column';
 import { useQuery } from '@tanstack/react-query';
 import { getAllUsers } from '../../services/service';
 import Loader from '@/ui/Loader';
-var Users = function () {
-    var _a = useQuery({
+const Users = () => {
+    const { data: allUsers, isPending } = useQuery({
         queryFn: getAllUsers,
         queryKey: ["admin", "users"]
-    }), allUsers = _a.data, isPending = _a.isPending;
+    });
     console.log(allUsers);
     if (isPending)
         return <Loader />;

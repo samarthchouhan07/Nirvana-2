@@ -6,7 +6,7 @@ import AbuDhabi from '../../public/AbuDhabi.jpg';
 import Mumbai from '../../public/Mumbai.jpg';
 import Hamburg from '../../public/Hamburg.jpg';
 import StTropez from '../../public/StTropez.jpg';
-export var popularCities = [
+export const popularCities = [
     {
         city: "Delhi",
         image: Delhi
@@ -24,14 +24,14 @@ export var popularCities = [
         image: Paris
     },
 ];
-export var optionTypes = [
+export const optionTypes = [
     { text: "Luxury", value: "luxury" },
     { text: "Budget", value: "budget" },
     { text: "3 Stars", value: "threeStars" },
     { text: "4 Stars", value: "fourStars" },
     { text: "5 Stars", value: "fiveStars" },
 ];
-export var optionLocations = [
+export const optionLocations = [
     {
         city: "Dubai",
         value: "dubai",

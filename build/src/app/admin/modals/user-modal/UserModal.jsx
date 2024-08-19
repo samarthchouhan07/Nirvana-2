@@ -9,41 +9,37 @@ import ModalLayout from "../../layout/ModalLayout";
 import Input from "@/ui/Input";
 import Button from "@/ui/Button";
 import { getUserById, updateUser } from "./service";
-var UserModal = function (_a) {
-    var userId = _a.userId, handleHideModal = _a.handleHideModal;
-    var _b = useQuery({
-        queryFn: function () { return getUserById(userId); },
-        queryKey: ["admin", "users", { userId: userId }],
-    }), user = _b.data, isPending = _b.isPending;
-    useEffect(function () {
+const UserModal = ({ userId, handleHideModal }) => {
+    const { data: user, isPending } = useQuery({
+        queryFn: () => getUserById(userId),
+        queryKey: ["admin", "users", { userId }],
+    });
+    useEffect(() => {
         if (user) {
             reset({ username: user.username, email: user.email });
         }
     }, [user]);
-    var querClient = useQueryClient();
-    var _c = useMutation({
-        mutationFn: function (_a) {
-            var userId = _a.userId, data = _a.data;
-            return updateUser({ userId: userId, data: data });
-        },
-        onSuccess: function () {
+    const querClient = useQueryClient();
+    const { mutate: handleUpdateUser, isPending: isPendingMutation } = useMutation({
+        mutationFn: ({ userId, data }) => updateUser({ userId, data }),
+        onSuccess: () => {
             toast.success("Successfully updated the user ");
             querClient.invalidateQueries({
                 queryKey: ["admin", "users"],
             });
         },
-    }), handleUpdateUser = _c.mutate, isPendingMutation = _c.isPending;
-    var _d = useForm({
+    });
+    const { register, handleSubmit, reset } = useForm({
         resolver: zodResolver(schema),
-    }), register = _d.register, handleSubmit = _d.handleSubmit, reset = _d.reset;
-    useEffect(function () {
+    });
+    useEffect(() => {
         reset({
             username: user === null || user === void 0 ? void 0 : user.username,
             email: user === null || user === void 0 ? void 0 : user.email,
         });
     }, [user === null || user === void 0 ? void 0 : user.username, user === null || user === void 0 ? void 0 : user.email]);
-    var onSubmit = function (data) {
-        handleUpdateUser({ userId: userId, data: data });
+    const onSubmit = (data) => {
+        handleUpdateUser({ userId, data });
         handleHideModal();
     };
     return (<ModalLayout document="User" handleHideModal={handleHideModal}>

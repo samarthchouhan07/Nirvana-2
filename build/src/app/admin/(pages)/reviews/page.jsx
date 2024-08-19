@@ -6,11 +6,11 @@ import { useQuery } from '@tanstack/react-query';
 import { getAllReviews } from './service';
 import { columns } from './table/Column';
 import Loader from '@/ui/Loader';
-var Page = function () {
-    var _a = useQuery({
+const Page = () => {
+    const { data: allReviews, isPending } = useQuery({
         queryFn: getAllReviews,
         queryKey: ["admin", "reviews"]
-    }), allReviews = _a.data, isPending = _a.isPending;
+    });
     console.log(allReviews);
     if (isPending)
         return <Loader />;

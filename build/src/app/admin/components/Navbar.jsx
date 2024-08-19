@@ -7,13 +7,13 @@ import { FaUser } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import CreateModal from "../modals/create-modal/CreateModal";
 import { signOut } from "next-auth/react";
-var Navbar = function () {
-    var _a = useState(false), showModal = _a[0], setShowModal = _a[1];
-    var _b = useState(false), popupUser = _b[0], setPopupUser = _b[1];
-    var currentPath = usePathname();
-    var handleHideModal = function () { return setShowModal(false); };
-    var handleShowModal = function () { return setShowModal(true); };
-    var toggleModal = function () { return setPopupUser(function (prev) { return !prev; }); };
+const Navbar = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [popupUser, setPopupUser] = useState(false);
+    const currentPath = usePathname();
+    const handleHideModal = () => setShowModal(false);
+    const handleShowModal = () => setShowModal(true);
+    const toggleModal = () => setPopupUser((prev) => !prev);
     return (<div className="sticky top-0 left-0 w-full flex justify-between items-center">
       <Link href="/" className="flex items-center gap-2 transition-all">
         <h1 className="text-blue-600 text-2xl font-bold">Nirvana</h1>
@@ -28,7 +28,7 @@ var Navbar = function () {
         </button>
         {popupUser && (<div onClick={toggleModal} className="absolute top-16 right-[10px] shadow-md flex flex-col items-center gap-4 p-4 bg-white rounded-xl">
             <Link href="/admin/reservations">Reservations</Link>
-            <button onClick={function () { return signOut(); }} className="text-slate-500 text-center">
+            <button onClick={() => signOut()} className="text-slate-500 text-center">
               Logout
             </button>
           </div>)}

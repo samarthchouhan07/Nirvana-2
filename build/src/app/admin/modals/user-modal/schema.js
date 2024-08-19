@@ -1,5 +1,5 @@
 import { z } from "zod";
-var schema = z.object({
+const schema = z.object({
     username: z.string().min(1, { message: "Username is required" }),
     email: z
         .string()

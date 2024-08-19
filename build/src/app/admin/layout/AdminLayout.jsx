@@ -1,8 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
-var AdminLayout = function (_a) {
-    var children = _a.children;
+const AdminLayout = ({ children }) => {
     return (<div className="h-full w-full overflow-hidden bg-slate-100">
     <div className="h-full w-full px-10 py-6">
         <Navbar />

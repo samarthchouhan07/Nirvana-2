@@ -6,12 +6,11 @@ import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
 // import UserModal 
 import React from 'react';
 import UserActionsCell from './UserActionsCell';
-export var columns = [
+export const columns = [
     {
         accessorKey: "profilePhoto",
         header: "Profile Photo",
-        cell: function (_a) {
-            var row = _a.row;
+        cell: ({ row }) => {
             return (<Image className="h-10 w-10 rounded-full object-cover" height="40" width="50" src={person_image} alt="Person image"/>);
         }
     },
@@ -21,9 +20,8 @@ export var columns = [
     },
     {
         accessorKey: "email",
-        header: function (_a) {
-            var column = _a.column;
-            return (<button className="flex items-center gap-1" onClick={function () { return column.toggleSorting(column.getIsSorted() === "asc"); }}>
+        header: ({ column }) => {
+            return (<button className="flex items-center gap-1" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
                     Email
                     <span className="flex items-center">
                         <AiOutlineArrowUp />
@@ -34,9 +32,8 @@ export var columns = [
     },
     {
         accessorKey: "reservations",
-        header: function (_a) {
-            var column = _a.column;
-            return (<button className="Flex items-center gap-1" onClick={function () { return column.toggleSorting(column.getIsSorted() === "asc"); }}>
+        header: ({ column }) => {
+            return (<button className="Flex items-center gap-1" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
                     Reservations
                     <span className="flex items-center">
                         <AiOutlineArrowUp />
@@ -44,10 +41,9 @@ export var columns = [
                     </span>
                 </button>);
         },
-        cell: function (_a) {
-            var _b;
-            var row = _a.row;
-            var value = ((_b = row.getValue("reservations")) === null || _b === void 0 ? void 0 : _b.length) || 0;
+        cell: ({ row }) => {
+            var _a;
+            const value = ((_a = row.getValue("reservations")) === null || _a === void 0 ? void 0 : _a.length) || 0;
             return (<div>
                     {value} reservations
                 </div>);
@@ -56,9 +52,8 @@ export var columns = [
     {
         accessorKey: "createdAt",
         header: "Created At",
-        cell: function (_a) {
-            var row = _a.row;
-            var value = row.getValue("createdAt");
+        cell: ({ row }) => {
+            const value = row.getValue("createdAt");
             return (<div>
                     {format(value)}
                 </div>);
@@ -67,9 +62,6 @@ export var columns = [
     {
         accessorKey: "actions",
         header: "Actions",
-        cell: function (_a) {
-            var row = _a.row;
-            return <UserActionsCell userId={row.original.id}/>;
-        },
+        cell: ({ row }) => <UserActionsCell userId={row.original.id}/>,
     },
 ];

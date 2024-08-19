@@ -6,11 +6,11 @@ import { columns } from "./table/Column";
 import { useQuery } from "@tanstack/react-query";
 import { getAllListings } from "../../services/service";
 import Loader from "@/ui/Loader";
-var Listings = function () {
-    var _a = useQuery({
+const Listings = () => {
+    const { data: allListings, isPending } = useQuery({
         queryFn: getAllListings,
         queryKey: ["admin", "listings"],
-    }), allListings = _a.data, isPending = _a.isPending;
+    });
     if (isPending) {
         return <Loader />;
     }

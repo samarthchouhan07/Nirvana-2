@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2015",
     "allowJs": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "strict": true,
     "noEmit": false,
     "esModuleInterop": true,
@@ -14,6 +15,13 @@
     "incremental": true,
     "rootDir": ".",
     "outDir": "./build",
+    "noImplicitAny": true, 
+    "strictNullChecks": true,
+    "strictFunctionTypes": true, 
+    "strictBindCallApply": true, 
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
     "plugins": [
       {
         "name": "next"

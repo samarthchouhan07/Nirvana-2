@@ -3,9 +3,8 @@ import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import person_image from "../../../../public/bianco_2.png";
 import { format } from "date-fns";
-var Review = function (_a) {
-    var review = _a.review;
-    var createdAt = new Date(review.createdAt);
+const Review = ({ review }) => {
+    const createdAt = new Date(review.createdAt);
     console.log(review);
     return (<div className="w-full flex gap-4 ">
         <div className="w-14 h-14">

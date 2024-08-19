@@ -1,8 +1,8 @@
-export var getDatesInRange = function (startDate, endDate) {
-    var start = new Date(startDate);
-    var end = new Date(endDate);
-    var dateinMilliseconds = new Date(start.getTime());
-    var dates = [];
+export const getDatesInRange = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const dateinMilliseconds = new Date(start.getTime());
+    const dates = [];
     while (dateinMilliseconds <= end) {
         dates.push(new Date(dateinMilliseconds).getTime());
         dateinMilliseconds.setDate(dateinMilliseconds.getDate() + 1);

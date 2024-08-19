@@ -53,6 +53,8 @@ const ListingModal = ({ handleHideModal, listingId }: Props) => {
     listing?.hasFreeWifi,
     listing?.location,
     listing?.pricePerNight,
+    listing,
+    reset
   ]);
 
   const handleImage = (e:any) => {
