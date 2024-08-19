@@ -55,10 +55,14 @@ const Catalog: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    await getFilteredListings(data);
-    queryClient.invalidateQueries({ queryKey: ["listings"] });
-    const newUrl = `/catalog?city=${data.location}&min_price=${data.min_price}&max_price=${data.max_price}&type=${data.type}`;
-    router.push(newUrl, { scroll: false });
+    try {
+      await getFilteredListings(data);
+      queryClient.invalidateQueries({ queryKey: ["listings"] });
+      const newUrl = `/catalog?city=${data.location}&min_price=${data.min_price}&max_price=${data.max_price}&type=${data.type}`;
+      router.push(newUrl, { scroll: false });
+    } catch (error) {
+      console.error("Error fetching listings:", error); 
+    }
   };
 
   const displayImage = locationImage || image;

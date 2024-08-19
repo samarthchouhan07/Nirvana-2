@@ -8,6 +8,7 @@ export async function GET(req:NextRequest){
         const reviews=await db.review.findMany({})
         return NextResponse.json(reviews)
     } catch (error:any) {
+        console.error(error);
         return NextResponse.error()
     }
 }

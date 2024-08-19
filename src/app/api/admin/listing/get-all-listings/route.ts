@@ -8,6 +8,7 @@ export async function GET(req:NextRequest){
         const allListings=await db.listing.findMany({})
         return NextResponse.json(allListings)
     } catch (error:any) {
+        console.error(error); 
         return NextResponse.json({
             error:error
         })
