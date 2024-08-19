@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
     "start": "next start",
     "dev": "next dev",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "schema": "src/prisma/schema.prisma",
+      "prisma:generate": "prisma generate --schema src/prisma/schema.prisma",
+  "build": "npm run prisma:generate && next build"
   },
   "babel": {
     "presets": [
