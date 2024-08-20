@@ -12,8 +12,8 @@ import { getCurrentUser } from "./currentUser";
 import { NextResponse } from "next/server";
 export const runtime = 'nodejs';
 const isAdminUser = () => __awaiter(void 0, void 0, void 0, function* () {
+    const currentUser = yield getCurrentUser();
     try {
-        const currentUser = yield getCurrentUser();
         if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.isAdmin)) {
             return NextResponse.json({ message: "You are not an admin!" }, { status: 403 });
         }

@@ -11,7 +11,8 @@ const LayoutProvider = ({ children }) => {
       <QueryClientProvider client={queryClient}>
         {pathname !== "/login" && pathname !== "/signup" && !pathname.includes("/admin") && <Navbar />}
         {children}
-        {pathname !== "/login" && pathname !== "/signup" && !pathname.includes("/admin") && <Footer />}
+        {pathname !== "/login" && pathname !== "/signup" && !pathname.includes("/admin")
+            && <Footer />}
       </QueryClientProvider>
     </>);
 };

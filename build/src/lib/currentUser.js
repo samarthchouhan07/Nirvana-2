@@ -24,8 +24,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export const runtime = 'nodejs';
 export function getSession() {
     return __awaiter(this, void 0, void 0, function* () {
+        const session = yield getServerSession(authOptions);
         try {
-            const session = yield getServerSession(authOptions);
             console.log("Session in getSession:", session);
             return session;
         }
@@ -38,8 +38,8 @@ export function getSession() {
 export function getCurrentUser() {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
+        const session = yield getSession();
         try {
-            const session = yield getSession();
             if (!((_a = session === null || session === void 0 ? void 0 : session.user) === null || _a === void 0 ? void 0 : _a.email)) {
                 return null;
             }

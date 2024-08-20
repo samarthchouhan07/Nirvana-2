@@ -13,7 +13,7 @@ export default function middleware(req) {
     return __awaiter(this, void 0, void 0, function* () {
         const token = yield getToken({ req });
         const pathname = req.nextUrl.pathname;
-        const urlOrigin = "http://localhost:3000/";
+        const urlOrigin = "https://nirvana-2.vercel.app";
         if (pathname.includes('/admin') && !(token === null || token === void 0 ? void 0 : token.isAdmin)) {
             return NextResponse.redirect(urlOrigin);
         }
