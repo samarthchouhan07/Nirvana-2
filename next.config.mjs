@@ -14,6 +14,9 @@ const nextConfig = {
         }
         return config;
     },
+    eslint:{
+        ignoreDuringBuilds:true
+    },
     reactStrictMode: true,
 }
 

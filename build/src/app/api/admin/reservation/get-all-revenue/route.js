@@ -9,11 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import db from "@/lib/db";
 import isAdminUser from "@/lib/isAdminUser";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { NextResponse } from "next/server";
+export const runtime = 'nodejs';
 export function GET(req) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield isAdminUser();
+            const adminResponse = yield isAdminUser();
+            if (adminResponse.status === 403) {
+                return adminResponse;
+            }
             const allReservations = yield db.reservation.findMany({
                 include: {
                     listing: true,
@@ -28,6 +33,9 @@ export function GET(req) {
             return NextResponse.json(totalRevenue);
         }
         catch (error) {
+            if (isDynamicServerError(error)) {
+                throw error;
+            }
             console.log(error);
             return NextResponse.json({
                 error: error,

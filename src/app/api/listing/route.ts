@@ -1,6 +1,10 @@
 import db from "@/lib/db";
 import isAdminUser from "@/lib/isAdminUser";
 import { NextRequest, NextResponse } from "next/server";
+import {isDynamicServerError} from "next/dist/client/components/hooks-server-context"
+
+export const runtime = 'nodejs'
+
 
 export async function GET(req:NextRequest){
   try {
@@ -9,6 +13,9 @@ export async function GET(req:NextRequest){
      })
      return NextResponse.json(listings)
   } catch (error:any) {
+    if (isDynamicServerError(error)){
+      throw error
+    }
      return NextResponse.json({
       error:error
      })
@@ -17,7 +24,10 @@ export async function GET(req:NextRequest){
 
 export async function POST(req: NextRequest) {
   try {
-    await isAdminUser();
+    const adminResponse = await isAdminUser();
+    if (adminResponse.status === 403) {
+      return adminResponse; 
+    }
     const body = await req.json();
     console.log(body);
     Object.values(body).forEach((v) => {
@@ -52,6 +62,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(newListing);
   } catch (error: any) {
+    if (isDynamicServerError(error)){
+      throw error
+    }
     return NextResponse.json({
       error: error,
     });

@@ -7,20 +7,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { getCurrentUser } from "./currentUser";
 import { NextResponse } from "next/server";
+export const runtime = 'nodejs';
 const isAdminUser = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const currentUser = yield getCurrentUser();
-        if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.isAdmin))
-            return NextResponse.json({
-                message: "You are not an admin!",
-            }, {
-                status: 403,
-            });
+        if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.isAdmin)) {
+            return NextResponse.json({ message: "You are not an admin!" }, { status: 403 });
+        }
+        return NextResponse.next();
     }
     catch (error) {
-        console.log(error);
+        if (isDynamicServerError(error)) {
+            throw error;
+        }
+        console.error("Error checking admin status:", error);
+        return NextResponse.json({ message: "Error checking admin status" }, { status: 500 });
     }
 });
 export default isAdminUser;

@@ -9,11 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import db from "@/lib/db";
 import isAdminUser from "@/lib/isAdminUser";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { NextResponse } from "next/server";
+export const runtime = 'nodejs';
 export function GET(req, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield isAdminUser();
+            const adminResponse = yield isAdminUser();
+            if (adminResponse.status === 403) {
+                return adminResponse;
+            }
             const { id } = ctx.params;
             const user = yield db.user.findUnique({
                 where: {
@@ -23,6 +28,9 @@ export function GET(req, ctx) {
             return NextResponse.json(user);
         }
         catch (error) {
+            if (isDynamicServerError(error)) {
+                throw error;
+            }
             console.log(error);
             return NextResponse.error();
         }
@@ -31,7 +39,10 @@ export function GET(req, ctx) {
 export function PUT(req, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield isAdminUser();
+            const adminResponse = yield isAdminUser();
+            if (adminResponse.status === 403) {
+                return adminResponse;
+            }
             const { id } = ctx.params;
             const body = yield req.json();
             const updatedUser = yield db.user.update({
@@ -43,6 +54,9 @@ export function PUT(req, ctx) {
             return NextResponse.json(updatedUser);
         }
         catch (error) {
+            if (isDynamicServerError(error)) {
+                throw error;
+            }
             return NextResponse.error();
         }
     });
@@ -65,6 +79,9 @@ export function DELETE(req, ctx) {
             }
         }
         catch (error) {
+            if (isDynamicServerError(error)) {
+                throw error;
+            }
             return NextResponse.error();
         }
     });

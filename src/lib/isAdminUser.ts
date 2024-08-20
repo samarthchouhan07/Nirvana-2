@@ -1,20 +1,28 @@
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { getCurrentUser } from "./currentUser";
 import { NextRequest, NextResponse } from "next/server";
 
-const isAdminUser = async () => {
+export const runtime = 'nodejs'
+
+const isAdminUser = async (): Promise<NextResponse> => {
+  const currentUser = await getCurrentUser();
   try {
-    const currentUser = await getCurrentUser();
-    if (!currentUser?.isAdmin)
+    if (!currentUser?.isAdmin) {
       return NextResponse.json(
-        {
-          message: "You are not an admin!",
-        },
-        {
-          status: 403,
-        }
+        { message: "You are not an admin!" },
+        { status: 403 }
       );
-  } catch (error: any) {
-    console.log(error);
+    }
+    return NextResponse.next(); 
+  } catch (error) {
+    if (isDynamicServerError(error)){
+      throw error
+    }
+    console.error("Error checking admin status:", error);
+    return NextResponse.json(
+      { message: "Error checking admin status" },
+      { status: 500 }
+    );
   }
 };
 

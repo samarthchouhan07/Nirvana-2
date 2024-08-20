@@ -1,10 +1,17 @@
 import db from "@/lib/db";
 import isAdminUser from "@/lib/isAdminUser";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { NextRequest, NextResponse } from "next/server";
+
+export const runtime = 'nodejs'
+
 
 export async function DELETE(req: NextRequest, ctx: any) {
   try {
-    await isAdminUser();
+    const adminResponse = await isAdminUser();
+    if (adminResponse.status === 403) {
+      return adminResponse; 
+    }
     const { id } = ctx.params;
     const review = await db.review.delete({
       where: {
@@ -19,6 +26,9 @@ export async function DELETE(req: NextRequest, ctx: any) {
       });
     }
   } catch (error: any) {
+    if (isDynamicServerError(error)){
+      throw error
+    }
     return NextResponse.error();
   }
 }

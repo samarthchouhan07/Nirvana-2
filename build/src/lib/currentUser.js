@@ -19,8 +19,9 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import db from "./db";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+export const runtime = 'nodejs';
 export function getSession() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

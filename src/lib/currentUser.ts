@@ -1,11 +1,15 @@
 import db from "./db";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Session } from "next-auth";
 
+export const runtime = 'nodejs'
+
+
+
 export async function getSession(): Promise<Session | null> {
+  const session = await getServerSession(authOptions) as Session | null;
   try {
-    const session = await getServerSession(authOptions) as Session | null;
     console.log("Session in getSession:", session);
     return session;
   } catch (error) {
@@ -15,8 +19,8 @@ export async function getSession(): Promise<Session | null> {
 }
 
 export async function getCurrentUser() {
+  const session = await getSession();
   try {
-    const session = await getSession();
     if (!session?.user?.email) {
       return null;
     }

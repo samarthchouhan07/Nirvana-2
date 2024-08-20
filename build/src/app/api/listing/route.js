@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import db from "@/lib/db";
 import isAdminUser from "@/lib/isAdminUser";
 import { NextResponse } from "next/server";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
+export const runtime = 'nodejs';
 export function GET(req) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -19,6 +21,9 @@ export function GET(req) {
             return NextResponse.json(listings);
         }
         catch (error) {
+            if (isDynamicServerError(error)) {
+                throw error;
+            }
             return NextResponse.json({
                 error: error
             });
@@ -28,7 +33,10 @@ export function GET(req) {
 export function POST(req) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield isAdminUser();
+            const adminResponse = yield isAdminUser();
+            if (adminResponse.status === 403) {
+                return adminResponse;
+            }
             const body = yield req.json();
             console.log(body);
             Object.values(body).forEach((v) => {
@@ -54,6 +62,9 @@ export function POST(req) {
             return NextResponse.json(newListing);
         }
         catch (error) {
+            if (isDynamicServerError(error)) {
+                throw error;
+            }
             return NextResponse.json({
                 error: error,
             });
