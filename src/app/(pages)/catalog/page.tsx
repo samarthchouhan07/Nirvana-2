@@ -11,11 +11,10 @@ import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, FormSchema } from "./schema";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { getFilteredListings } from "./service";
 import Card from "@/components/best-hotels/Card";
-import { z } from "zod";
-import Loader from "@/ui/Loader";
+import {z} from "zod"
 
 type FormData = z.infer<typeof schema>;
 
