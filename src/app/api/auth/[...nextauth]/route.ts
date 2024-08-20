@@ -5,6 +5,7 @@ import db from "@/lib/db";
 import NextAuth from "next-auth/next";
 
 export const authOptions:any = {
+  site: process.env.NEXTAUTH_URL,
   adapter: PrismaAdapter(db),
   providers: [
     CredentialsProvider({
