@@ -4,7 +4,7 @@ import { NextRequest,NextResponse } from "next/server";
 export default async function middleware(req:NextRequest){
     const token= await getToken({req})
     const pathname=req.nextUrl.pathname
-    const urlOrigin="https://nirvana-2.vercel.app"
+    const urlOrigin="http://localhost:3000/"
     if(pathname.includes('/admin') && !token?.isAdmin){
         return NextResponse.redirect(urlOrigin)
     }

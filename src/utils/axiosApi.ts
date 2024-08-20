@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https:nirvana-2.vercel.app/api/";
+const baseURL = "http://localhost:3000/api/";
 
 const AXIOS_API = axios.create({
   baseURL,
