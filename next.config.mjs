@@ -2,6 +2,8 @@
 import withPlaiceholder from "@plaiceholder/next";
 
 const nextConfig = {
+    swcMinify: false,
+    transpilePackages: ['@plaiceholder/next'],
     images: {
         remotePatterns: [
             { hostname: 'res.cloudinary.com', protocol: 'https', port: '' }
