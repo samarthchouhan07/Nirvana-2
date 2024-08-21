@@ -65,7 +65,9 @@ const Login: React.FC = () => {
               className="w-full text-blue-800 p-2 rounded-xl outline-none"
             />
             {errors?.email && (
-              <h5 className="text-red-600 font-medium">{errors.email.message}</h5>
+              <h5 className="text-red-600 font-medium">
+                {errors.email.message}
+              </h5>
             )}
             <Input
               id="password"
@@ -80,11 +82,20 @@ const Login: React.FC = () => {
               </h5>
             )}
             <Button
-              disabled={false}
+              disabled={isLoading}
               label="Log in"
               className="mt-6 px-6 py-2 text-[20px] bg-blue-600 text-white rounded-xl transition-all hover:bg-[#1971d1]"
             />
           </form>
+          <div className="text-center mt-4">
+            <span className="text-slate-600">Don't have an account? </span>
+            <button
+              onClick={() => router.push("https://nirvana-2.vercel.app/signup")}
+              className="text-blue-600 hover:underline"
+            >
+              Sign Up
+            </button>
+          </div>
         </div>
       </div>
     </div>

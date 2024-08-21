@@ -41,7 +41,7 @@ const SignUp: React.FC = (props: Props) => {
     }
   };
 
-  return (
+  return  (
     <div className="relative h-screen w-full">
       <div className="relative h-full w-full">
         <Image
@@ -80,6 +80,15 @@ const SignUp: React.FC = (props: Props) => {
               label="Submit"
             />
           </form>
+          <div className="text-center mt-4">
+            <span className="text-slate-600">Already have an account? </span>
+            <button
+              onClick={() => router.push("https://nirvana-2.vercel.app/login")}
+              className="text-blue-600 hover:underline"
+            >
+              Log In
+            </button>
+          </div>
         </div>
       </div>
     </div>
