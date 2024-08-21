@@ -26,7 +26,7 @@ type Props = {
 
 register();
 
-const HotelDetails:React.FC = (ctx:any) => {
+const HotelDetails:React.FC<Props>= (ctx) => {
   console.log(ctx)
   const id = ctx.params?.id;
   const [showModal, setShowModal] = useState(false);
