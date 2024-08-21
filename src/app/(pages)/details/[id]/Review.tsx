@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import person_image from "../../../../public/bianco_2.png";
+import person_image from "../../../../../public/bianco_2.png"
 import { format } from "date-fns";
 
 type Props = {};
