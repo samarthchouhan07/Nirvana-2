@@ -11,6 +11,10 @@ export default async function middleware(req:NextRequest){
     if(!pathname.includes(`/login`) && !pathname.includes('/signup') && !token){
         return NextResponse.redirect(urlOrigin + 'login')
     }
+    if (pathname.startsWith('/api/auth') || pathname.includes('/api/')) {
+        return NextResponse.next();
+    }
+    
     if((pathname.includes('/login') || pathname.includes('/signup')) && token ){
         return NextResponse.redirect(urlOrigin)
     }else{
