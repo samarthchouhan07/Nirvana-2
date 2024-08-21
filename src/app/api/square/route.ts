@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
         ],
       },
       checkoutOptions: {
-        redirectUrl: "http://localhost:3000/success-page",
+        redirectUrl: "http://nirvana-2.vercel.app/success-page",
       },
       metadata: {
         startDate,
