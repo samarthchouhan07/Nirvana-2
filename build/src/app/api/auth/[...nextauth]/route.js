@@ -19,10 +19,10 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcryptjs from "bcryptjs";
 import db from "@/lib/db";
-import NextAuth from "next-auth/next";
 export const authOptions = {
     adapter: PrismaAdapter(db),
     providers: [
@@ -30,14 +30,10 @@ export const authOptions = {
             name: "credentials",
             credentials: {
                 email: { label: "email", type: "text" },
-                password: {
-                    label: "password",
-                    type: "password",
-                },
+                password: { label: "password", type: "password" }
             },
             authorize(credentials) {
                 return __awaiter(this, void 0, void 0, function* () {
-                    console.log(credentials);
                     const { email, password } = credentials;
                     const user = yield db.user.findUnique({
                         where: {
@@ -45,27 +41,26 @@ export const authOptions = {
                         }
                     });
                     if (!user) {
-                        throw new Error("invalid input");
+                        throw new Error("Invalid input");
                     }
                     const isCorrectPass = yield bcryptjs.compare(password, user.password);
                     if (!isCorrectPass) {
-                        throw new Error("invalid input ");
+                        throw new Error("Invalid input");
                     }
                     else {
                         const { password } = user, currentUser = __rest(user, ["password"]);
-                        console.log(currentUser);
                         return currentUser;
                     }
                 });
             }
-        }),
+        })
     ],
     session: {
-        strategy: "jwt",
+        strategy: "jwt"
     },
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-        signIn: "/login",
+        signIn: "/login"
     },
     callbacks: {
         jwt({ token, user }) {
@@ -76,8 +71,8 @@ export const authOptions = {
         session({ session, token }) {
             session.user.isAdmin = token.isAdmin;
             return session;
-        },
-    },
+        }
+    }
 };
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

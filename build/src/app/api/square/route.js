@@ -43,7 +43,7 @@ export function POST(req) {
                     ],
                 },
                 checkoutOptions: {
-                    redirectUrl: "http://nirvana-2.vercel.app/success-page",
+                    redirectUrl: "https://nirvana-2.vercel.app/success-page",
                 },
                 metadata: {
                     startDate,
