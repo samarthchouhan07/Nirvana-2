@@ -1,6 +1,6 @@
 import db from "./db";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]";
 import { Session } from "next-auth";
 
 export const runtime = 'nodejs'
