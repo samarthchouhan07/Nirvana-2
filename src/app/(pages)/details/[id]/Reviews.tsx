@@ -1,6 +1,6 @@
 "use client ";
 import React, { useState } from "react";
-import Review from "./Review";
+import Review from "./review";
 import { AiFillStar } from "react-icons/ai";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
