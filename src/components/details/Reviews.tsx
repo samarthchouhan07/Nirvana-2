@@ -12,7 +12,7 @@ type Props = {
   id: any;
 };
 
-const Reviews = ({ id }: Props) => {
+const Reviews:React.FC<Props> = ({ id }) => {
   const session = useSession();
   console.log(session);
   const [selectedStar, setSelectedStar] = useState(5);

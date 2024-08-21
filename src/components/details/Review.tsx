@@ -4,9 +4,9 @@ import { AiFillStar } from "react-icons/ai";
 import person_image from "../../../public/bianco_2.png"
 import { format } from "date-fns";
 
-type Props = {};
+type Props = { review: any };
 
-const Review = ({ review }: { review: any }) => {
+const Review:React.FC<Props> = ({ review }) => {
   const createdAt = new Date(review.createdAt);
   console.log(review);
   return (

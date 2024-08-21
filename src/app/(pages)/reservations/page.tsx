@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteReservation, getUserReservations } from "./service";
 import toast from "react-hot-toast";
 
-const Reservations = () => {
+const Reservations: React.FC = () => {
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["reservations"],

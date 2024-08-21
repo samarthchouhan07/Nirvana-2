@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 
 type Props = {};
 
-const SignUp = (props: Props) => {
+const SignUp: React.FC = (props: Props) => {
   const {
     register,
     handleSubmit,

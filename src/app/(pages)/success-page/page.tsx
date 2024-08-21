@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {};
 
-const Page = (props: Props) => {
+const Page: React.FC = (props: Props) => {
   return (
     <div className="h-screen w-full flex justify-center items-center bg-slate-100">
       <div className="max-w-md p-12 bg-white rounded-lg shadow-lg">
