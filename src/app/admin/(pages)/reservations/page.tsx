@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import listing_image from "../../../public/hr_1.jpg";
 import Card from "@/app/(pages)/reservations/Card";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -39,7 +38,7 @@ const Reservations = () => {
 
   return (
     <AdminLayout>
-      <div className="p-6 lg:p-12 min-h-screen w-full bg-gray-50">
+      <div className="p-6 lg:p-12 min-h-screen w-full">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">Reservations</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.length > 0 ? (
