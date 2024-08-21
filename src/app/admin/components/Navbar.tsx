@@ -41,7 +41,7 @@ const Navbar = () => {
             onClick={toggleModal}
             className="absolute top-16 right-[10px] shadow-md flex flex-col items-center gap-4 p-4 bg-white rounded-xl"
           >
-            <Link href="/admin/reservations">Reservations</Link>
+            <Link href="/reservations">Reservations</Link>
             <button
               onClick={() => signOut()}
               className="text-slate-500 text-center"
