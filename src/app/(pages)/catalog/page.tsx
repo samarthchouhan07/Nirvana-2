@@ -7,7 +7,7 @@ import Select from "@/ui/Select";
 import { optionLocations, optionTypes } from "@/data/data";
 import Input from "@/ui/Input";
 import Button from "@/ui/Button";
-import { useSearchParams, useRouter } from "next/navigation"; // Updated imports
+import { useSearchParams, useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, FormSchema } from "./schema";
