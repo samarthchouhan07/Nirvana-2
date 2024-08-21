@@ -7,7 +7,7 @@ import { optionLocations, optionTypes } from "@/data/data";
 import Button from "@/ui/Button";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getListingById } from "@/app/(pages)/details/service"
+import { getListingById } from "@/app/(pages)/details/[id]/service";
 import { updateListing } from "../../(pages)/listings/service";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
