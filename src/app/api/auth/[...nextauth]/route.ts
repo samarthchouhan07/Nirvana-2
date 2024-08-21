@@ -54,7 +54,8 @@ export const authOptions:any = {
             session.user.isAdmin = token.isAdmin
             return session
         }
-    }
+    },
+    url: process.env.NEXTAUTH_URL
 }
 
 const handler = NextAuth(authOptions)
