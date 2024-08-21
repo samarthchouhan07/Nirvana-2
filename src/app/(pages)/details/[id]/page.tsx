@@ -17,7 +17,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getListingById } from "./service";
 import Reviews from "./reviews";
 import Loader from "@/ui/Loader";
-import { GetServerSidePropsContext } from "next";
 
 type Props = {
   params: {
