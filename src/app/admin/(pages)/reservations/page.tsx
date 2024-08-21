@@ -43,11 +43,12 @@ const Reservations = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.length > 0 ? (
             data?.map((reservation: any) => (
-              <Card
-                key={reservation.id}
-                reservation={reservation}
-                mutate={mutate}
-              />
+              <div key={reservation.id} className="flex justify-center">
+                <Card
+                  reservation={reservation}
+                  mutate={mutate}
+                />
+              </div>
             ))
           ) : (
             <div className="col-span-full text-center">
