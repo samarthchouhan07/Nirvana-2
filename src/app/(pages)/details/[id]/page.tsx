@@ -27,7 +27,7 @@ type Props = {
 
 register();
 
-const HotelDetails = (ctx: GetServerSidePropsContext) => {
+const HotelDetails = (ctx: any) => {
   console.log(ctx)
   const id = ctx.params?.id;
   const [selectedStar, setSelectedStar] = useState(5);
