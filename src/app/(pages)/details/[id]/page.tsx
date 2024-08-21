@@ -15,7 +15,7 @@ import { TiWiFi } from "react-icons/ti";
 import BookModal from "@/components/book-modal/BookModal";
 import { useQuery } from "@tanstack/react-query";
 import { getListingById } from "./service";
-import Reviews from "./reviews";
+import Reviews from "@/components/details/Reviews";
 import Loader from "@/ui/Loader";
 
 type Props = {
