@@ -29,7 +29,6 @@ register();
 const HotelDetails = (ctx: any) => {
   console.log(ctx)
   const id = ctx.params?.id;
-  const [selectedStar, setSelectedStar] = useState(5);
   const [showModal, setShowModal] = useState(false);
   const swiperElRef = useRef(null);
   console.log(id);
