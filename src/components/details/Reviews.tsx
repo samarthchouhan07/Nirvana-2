@@ -4,7 +4,7 @@ import Review from "./Review";
 import { AiFillStar } from "react-icons/ai";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { getReviewsByListing, postReview } from "../../app/(pages)/details/[id]/service"
+import { getReviewsByListing, postReview } from "@/app/(pages)/details/service"
 import { useSession } from "next-auth/react";
 import Pagination from "@/components/pagination/Pagination";
 
