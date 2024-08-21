@@ -46,11 +46,11 @@ export const authOptions:any = {
         signIn: "/login"
     },
     callbacks: {
-        jwt({ token, user }:any) {
+        async jwt({ token, user }:any) {
             if (user) token.isAdmin = user.isAdmin
             return token
         },
-        session({ session, token }:any) {
+        async session({ session, token }:any) {
             session.user.isAdmin = token.isAdmin
             return session
         }
