@@ -1,30 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import React, { Suspense } from "react";
+import React from "react";
 import image from "../../../../public/hr_1.jpg";
 import Select from "@/ui/Select";
 import { optionLocations, optionTypes } from "@/data/data";
 import Input from "@/ui/Input";
 import Button from "@/ui/Button";
-import { useRouter } from "next/router";
+import { useSearchParams, useRouter } from "next/navigation"; // Updated imports
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, FormSchema } from "./schema";
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getFilteredListings } from "./service";
 import Card from "@/components/best-hotels/Card";
-import {z} from "zod"
+import { z } from "zod";
 
 type FormData = z.infer<typeof schema>;
 
 const Catalog: React.FC = () => {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const { query } = router;
-  const city = query.city as string;
-  const min_price = query.min_price ? Number(query.min_price) : undefined;
-  const max_price = query.max_price ? Number(query.max_price) : undefined;
-  const type = query.type as string;
+
+
+  const city = searchParams.get("city") || "";
+  const min_price = searchParams.get("min_price") ? Number(searchParams.get("min_price")) : undefined;
+  const max_price = searchParams.get("max_price") ? Number(searchParams.get("max_price")) : undefined;
+  const type = searchParams.get("type") || "";
 
   const {
     city: city_name,
@@ -60,13 +62,14 @@ const Catalog: React.FC = () => {
       await getFilteredListings(data);
       queryClient.invalidateQueries({ queryKey: ["listings"] });
       const newUrl = `/catalog?city=${data.location}&min_price=${data.min_price}&max_price=${data.max_price}&type=${data.type}`;
-      router.push(newUrl); // Remove scroll option
+      router.push(newUrl);
     } catch (error) {
       console.error("Error fetching listings:", error); 
     }
   };
 
   const displayImage = locationImage || image;
+
 
   return (
       <div className="min-h-screen w-full">
