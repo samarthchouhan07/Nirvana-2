@@ -34,11 +34,20 @@ const HotelDetails = (ctx: GetServerSidePropsContext) => {
   const [showModal, setShowModal] = useState(false);
   const swiperElRef = useRef(null);
   console.log(id);
+ 
 
-  const { data: listing, isPending } = useQuery({
+  const { data: listing, isPending  ,isError, error} = useQuery({
     queryKey: ["listings", { id }],
     queryFn: () => getListingById(id),
   });
+  if (isError) {
+    console.error("Error fetching listing:", error);
+    return <p>Error loading listing details</p>;
+  }
+
+  if (!listing) {
+    return <p>Listing not found</p>;
+  }
   console.log(listing)
 
   const handleShowModal = () => setShowModal(true);
