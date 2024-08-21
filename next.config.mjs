@@ -2,7 +2,6 @@
 import withPlaiceholder from "@plaiceholder/next";
 
 const nextConfig = {
-    swcMinify: false,
     transpilePackages: ['@plaiceholder/next'],
     images: {
         remotePatterns: [

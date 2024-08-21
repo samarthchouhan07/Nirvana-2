@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/currentUser";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse} from "next/server"
 import { Client, Environment, ApiError } from "square";
 import { randomUUID } from 'crypto';
 import db from "@/lib/db";
